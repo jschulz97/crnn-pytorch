@@ -78,7 +78,6 @@ class CRNN(nn.Module):
 
         conv = self.cnn(images)
         batch, channel, height, width = conv.size()
-
         conv = conv.view(batch, channel * height, width)
         conv = conv.permute(2, 0, 1)  # (width, batch, feature)
         seq = self.map_to_seq(conv)

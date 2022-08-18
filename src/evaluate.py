@@ -36,7 +36,7 @@ def evaluate(crnn, dataloader, criterion,
 
             batch_size = images.size(0)
             input_lengths = torch.LongTensor([logits.size(0)] * batch_size)
-
+            target_lengths = torch.flatten(target_lengths)
             loss = criterion(log_probs, targets, input_lengths, target_lengths)
 
             preds = ctc_decode(log_probs, method=decode_method, beam_size=beam_size)
